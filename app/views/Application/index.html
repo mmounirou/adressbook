@@ -1,4 +1,23 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-#{welcome /}
+<div class="contacts">
+	<table>
+		<tr>
+			<th>First Name</th>
+			<th>Name</th>
+			<th>Mail</th>
+			<th>Phone</th>
+		</tr>
+		#{list items:contacts , as:'contact'}
+		<tr>
+			<td>${contact.firstName}</td>
+			<td>${contact.name}</td>
+			<td>${contact.mail}</td>
+			<td>${contact.phone}</td>
+		</tr>
+		
+		#{/list}
+	</table>
+
+</div>

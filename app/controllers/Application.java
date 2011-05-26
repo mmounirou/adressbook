@@ -1,16 +1,18 @@
 package controllers;
 
-import play.*;
-import play.mvc.*;
+import java.util.List;
 
-import java.util.*;
+import models.Contact;
+import play.mvc.Controller;
 
-import models.*;
+public class Application extends Controller
+{
 
-public class Application extends Controller {
+	public static void index()
+	{
 
-    public static void index() {
-        render();
-    }
+		List<Contact> contacts = Contact.all().fetch();
+		render(contacts);
+	}
 
 }
