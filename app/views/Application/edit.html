@@ -1,0 +1,51 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<div>
+	#{form @Application.updateContact(contact.id)}
+<table>
+	<thead>
+    	<tr>
+        	<th class="th-begin"></th>
+            <th/>
+            <th> (${contact.firstName} ${contact.name})</th>
+            <th/>
+            <th class="th-end" />
+        </tr>
+    </thead>
+        <tfoot>
+    	<tr>
+        	<td colspan="4" class="rounded-foot-left" />
+        	<td class="rounded-foot-right" />
+        </tr>
+    </tfoot>
+	<tr>
+		<td>First Name</td>
+		<td colspan="4" class="input"><input id="firstName" name="firstName" type="text" value="${contact.firstName}"/></td>
+	</tr>
+	<tr>
+		<td>Name</td>
+		<td colspan="4" class="input"><input id="name" name="name" type="text" value="${contact.name}"/></td>
+	</tr>
+		<tr>
+			<td>Mail</td>
+			<td colspan="4" class="input"><input id="mail" name="mail" type="mail" value="${contact.mail}"/></td>
+		</tr>
+		<tr>
+			<td>Phone</td>
+			<td colspan="4" class="input"><input id="phone" name="phone" type="tel" value="${contact.phone}"/></td>
+		</tr>
+		<tr>
+						<td  class="input"><input type="submit" value="Update"/></td>
+			#{/form}
+			<td colspan="3" class="input" />			
+			<td class="input">
+#{form @Application.index()}
+				<input type="submit" value="Cancel"/></td>			
+#{/form}
+			
+			
+		</tr>
+	</tr>
+</table>
+<div>

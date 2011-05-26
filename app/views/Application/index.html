@@ -3,21 +3,39 @@
 
 <div class="contacts">
 	<table>
-		<tr>
-			<th>First Name</th>
-			<th>Name</th>
-			<th>Mail</th>
-			<th>Phone</th>
-		</tr>
+		<thead>
+	    	<tr>
+	        	<th class="th-begin">First Name</th>
+	            <th >Name</th>
+	            <th >Mail</th>
+	            <th >Phone</th>
+	            <th class="th-end" />
+	        </tr>
+	    </thead>
+	        <tfoot>
+	    	<tr>
+	        	<td colspan="4" class="rounded-foot-left" />
+	        	<td class="rounded-foot-right" />
+	        </tr>
+	    </tfoot>
 		#{list items:contacts , as:'contact'}
 		<tr>
 			<td>${contact.firstName}</td>
 			<td>${contact.name}</td>
 			<td>${contact.mail}</td>
 			<td>${contact.phone}</td>
+			<td><a href="@{Application.edit(contact.id)}">></td>
 		</tr>
-		
+		<tr>	
 		#{/list}
+		#{form @Application.addContact()}
+			<td class="input"><input id="firstName" name="firstName" type="text"/></td>
+			<td class="input"><input id="name" name="name" type="text"/></td>
+			<td class="input"><input id="mail" name="mail" type="mail"/></td>
+			<td class="input"><input id="phone" name="phone" type="tel"/></td>
+			<td class="input"><input type="submit" value="+"/></td>
+		#{/form}
+		</tr>
 	</table>
 
 </div>
