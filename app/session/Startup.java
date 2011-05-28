@@ -12,11 +12,10 @@ public class Startup extends Job
 	@Override
 	public void doJob() throws Exception
 	{
-/*		if (Contact.count() == 0)
+		if (Contact.count() == 0)
 		{
 			Fixtures.loadModels("data.yml");
 		}
-*/
 	}
 
 }

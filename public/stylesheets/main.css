@@ -1,5 +1,6 @@
 html,body {
-	font-family: "Monaco", "Verdana", "Tahoma", "Lucida Sans Unicode","Lucida Grande", Sans-Serif;
+	font-family: "Monaco", "Verdana", "Tahoma", "Lucida Sans Unicode",
+		"Lucida Grande", Sans-Serif;
 	font-size: small;
 	color: white;
 }
@@ -75,6 +76,62 @@ td label {
 	clear: both;
 }
 
-fieldset{
+fieldset {
 	background: #9b423c;
+}
+
+#
+based on http: //woork.blogspot.com
+	/2008/03/perfect-pagination-style-using-css.html
+
+div.pagination-container {
+	margin-bottom: 10px;
+	clear: both;
+}
+
+ul.pagination {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	float: center;
+}
+
+.pagination li {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	float: left;
+	margin-right: 2px;
+}
+
+.pagination .previous-off a,.pagination .next-off a,.pagination .off a:link,.pagination .off a:visited
+	{
+	color: #888888;
+	/*font-weight: bold;*/
+}
+
+.pagination .next a,.pagination .previous a,.pagination .first a,.pagination .last a
+	{ /*font-weight: bold;*/
+	color: #00000;
+}
+
+.pagination .active {
+	background-color: #DEDEDE;
+	font-weight: bold;
+}
+
+.pagination .active a {
+	color: green;
+}
+
+.pagination a:link,.pagination a:visited {
+	color: #9b423c;
+	display: block;
+	padding: 3px 6px;
+	text-decoration: none;
+}
+
+.pagination a:hover {
+	text-decoration: none;
 }
