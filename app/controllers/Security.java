@@ -1,17 +1,17 @@
-package session;
+package controllers;
 
 import models.User;
 
 public class Security extends controllers.Secure.Security
 {
-	public static boolean authenticate(String username, String password)
+	static boolean authenticate(String username, String password)
 	{
 		return User.connect(username, password) != null;
 	}
 
-	public static boolean check(String profile)
+	static boolean check(String profile)
 	{
-		User user = User.byLogin(Security.connected());
+		User user = User.byLogin(connected());
 		return (user == null) ? false : user.isAdmin;
 	}
 }
