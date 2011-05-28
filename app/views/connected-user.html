@@ -1,0 +1,6 @@
+#{extends 'main.html' /}
+<div class="menu">
+	<span class="usermsg">Welcome Back<strong> ${user?.firstname} ${user?.name}</strong></span> 
+	<span class="logoutlink"><a href="@{Secure.logout()}">logout</a></span>
+</div>
+#{doLayout /}

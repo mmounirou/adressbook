@@ -24,6 +24,7 @@ public class Contact extends Model
 		this.firstName = firstName;
 		this.mail = mail;
 		this.phone = phone;
+		
 	}
 
 }

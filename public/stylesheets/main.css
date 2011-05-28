@@ -1,76 +1,80 @@
-html,body{
-	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-	font-size: 12px;
+html,body {
+	font-family: "Monaco", "Verdana", "Tahoma", "Lucida Sans Unicode","Lucida Grande", Sans-Serif;
+	font-size: small;
+	color: white;
+}
+
+body {
+	margin: 0 auto;
+	padding: 100px 0px;
+	width: 800px;
+	background: #b6bbb7;
+}
+
+a:link,a:visited {
+	color: #b13005;
+	/*font-weight: bold;*/
+}
+
+.usermsg span {
+	float: left;
+}
+
+.logoutlink {
+	float: right;
+}
+
+.login p {
+	text-align: center;
+}
+
+.contacts table {
 	text-align: center;
 	border-collapse: collapse;
-}
-
-body{
-	margin: 0 auto;
-	padding : 30px;
-	width: 600px;
-}
-
-table{
-border-collapse: collapse;
-width: 100%;
-}
-
-thead th.th-begin
-{
-	background: #b9c9fe url('../images/left.png') left -1px no-repeat;
-}
-
-thead th.th-end
-{
-	background: #b9c9fe url('../images/right.png') right -1px no-repeat;
-}
-
-th
-{
-	padding: 8px;
-	height : 10px;
-	font-weight: normal;
-	font-size: 13px;
-	color: #039;
-	background: #b9c9fe;
-}
-
-td
-{
-	padding: 8px;
-	background: #e8edff;
-	border-top: 1px solid #fff;
-	color: #669;
-}
-
-tfoot td.rounded-foot-left
-{
-	background: #e8edff url('../images/botleft.png') left bottom no-repeat;
-}
-
-tfoot td.rounded-foot-right
-{
-	background: #e8edff url('../images/botright.png') right bottom no-repeat;
-}
-
-tbody tr:hover td
-{
-	background: #d0dafd;
-}
-
-.contacts td.input{
-	border : 0px solid transparent;
-	padding : 0px;
-	padding-rigth :5px;	
-	margin : 5 px;
-}
-
-input{
-	background: #b9c9fe;
-	padding: 0px;
-	width : 90%;
+	width: 100%;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
+	border-radius: 5px;
 }
 
+.contacts th {
+	padding: 8px;
+	height: 10px;
+	background: #9b423c;
+}
+
+.contacts td {
+	width: 200px;
+	padding: 8px;
+	border-rigth: 1px solid black;
+	background: #354f88;
+}
+
+.th-add th {
+	width: 10px;
+}
+
+.contacts tbody tr:hover td {
+	background: #869ed0;
+}
+
+.input td {
+	padding: 0px;
+}
+
+td input {
+	width: 95%;
+}
+
+#paginate-td {
+	padding-left: 80px;
+}
+
+td label {
+	text-align: left;
+	clear: both;
+}
+
+fieldset{
+	background: #9b423c;
+}

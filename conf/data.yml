@@ -1,3 +1,16 @@
+User(mmounirou):
+    name: MOUNIROU
+    firstname: Mohamed
+    login: mmounirou
+    password: mmounirou
+    
+User(admin):
+    name: MOUNIROU
+    firstname: Mohamed
+    login: admin
+    password: admin
+    isAdmin: true
+
 Contact(marzouk):
     name : MOUNIROU
     firstName : Mohamed
@@ -23,4 +36,28 @@ Contact(isdeen):
     mail : idriss@mmounirou.com
     phone : 002299292929
 
+Contact(marzouk1):
+    name : MOUNIROU
+    firstName : Mohamed
+    mail : mmounirou@mmounirou.com
+    phone : 002299292929
+
+Contact(idriss1):
+    name : MOUNIROU
+    firstName : Idriss
+    mail : idriss@mmounirou.com
+    phone : 002299292929
+
+Contact(afis1):
+    name : MOUNIROU
+    firstName : Afis
+    mail : afis@mmounirou.com
+    phone : 002299292929
+
+
+Contact(isdeen1):
+    name : MOUNIROU
+    firstName : Isdeen
+    mail : idriss@mmounirou.com
+    phone : 002299292929
  
