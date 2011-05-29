@@ -2,7 +2,7 @@
 #{set title:'Home' /}
 
 <div class="contacts">
-	#{form @Application.updateContact(contact.id)}
+	#{form @Application.updateContact(contact.id) , method:'POST'}
 <table>
 	<thead>
     	<tr>

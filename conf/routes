@@ -5,6 +5,7 @@
 # Home page
 *       /                                       module:secure
 GET     /                                       Application.index
+GET 	/exportContacts							Utils.exportContacts  
 GET		/groups									Application.groups
 GET		/login			Secure.login
 POST    /login          Secure.authenticate

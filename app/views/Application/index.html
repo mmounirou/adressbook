@@ -35,7 +35,7 @@
 
 		#{/paginate.list }
 		 #{secure.check 'admin'} 
-		 #{form @Application.addContact()}
+		 #{form @Application.addContact() , method:'POST'}
 			<td class="input"><input id="cgroup" name="cgroup" type="text" /></td> 
 			<td class="input"><input id="firstName" name="firstName" type="text" /></td>
 			<td class="input"><input name="name" type="text" /></td>
