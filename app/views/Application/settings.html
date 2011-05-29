@@ -1,0 +1,31 @@
+#{extends 'connected-user.html' /}
+
+<div class="login">		
+	#{form @Application.loadFromGmail()}
+		
+		#{if flash.error}
+			<p class="error">
+				&{flash.error}
+			</p>
+		#{/if}
+		#{if flash.success}
+			<p class="success">
+				&{flash.success}
+			</p>
+		#{/if}
+	<fieldset >
+		<p id="field">
+			<label for="gmail">GMail : </label>
+			<input type="text" name="gmail" id="gmail" value="" />
+		</p>
+		<p id="field">
+			<label for="password">Password</label>
+			<input type="password" name="password" id="password" value="" />
+		</p>
+		<p id="field">
+			<input type="submit" id="signin" value="Upload" />
+		</p>
+	</fieldset>
+	<p>
+	#{/form}
+</div>

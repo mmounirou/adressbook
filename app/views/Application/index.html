@@ -7,6 +7,7 @@
 	<table>
 		<thead>
 			<tr>
+				<th>Group</th>
 				<th>First Name</th>
 				<th>Name</th>
 				<th>Mail</th>
@@ -16,13 +17,14 @@
 		</thead>
 		<tfoot>
 			<tr>
-				<td/>
-				<td id="paginate-td" colspan="3" >#{paginate.controls items:paginator /} </td>
+				<td />
+				<td id="paginate-td" colspan="4" >#{paginate.controls items:paginator /} </td>
 				<td/>
 			</tr>
 		</tfoot>
 		#{paginate.list items:paginator , as:'contact'}
 		<tr>
+			<td>${contact.cgroup}</td>
 			<td>${contact.firstName}</td>
 			<td>${contact.name}</td>
 			<td>${contact.mail}</td>
@@ -34,6 +36,7 @@
 		#{/paginate.list }
 		 #{secure.check 'admin'} 
 		 #{form @Application.addContact()}
+			<td class="input"><input id="cgroup" name="cgroup" type="text" /></td> 
 			<td class="input"><input id="firstName" name="firstName" type="text" /></td>
 			<td class="input"><input name="name" type="text" /></td>
 			<td class="input"><input id="mail" name="mail" type="mail" /></td>

@@ -23,6 +23,7 @@ a:link,a:visited {
 
 .logoutlink {
 	float: right;
+	padding: 3px 6px;
 }
 
 .login p {
@@ -68,7 +69,7 @@ td input {
 }
 
 #paginate-td {
-	padding-left: 80px;
+	padding-left: 110px;
 }
 
 td label {
@@ -78,6 +79,7 @@ td label {
 
 fieldset {
 	background: #9b423c;
+	width:100%
 }
 
 #

@@ -20,6 +20,10 @@
         </tr>
     </tfoot>
 	<tr>
+		<td><label>Group : </label></td>
+		<td colspan="4"><input id="cgroup" name="cgroup" type="text" value="${contact.cgroup}"/></td>
+	</tr>
+	<tr>
 		<td><label>Firstname : </label></td>
 		<td colspan="4"><input id="firstName" name="firstName" type="text" value="${contact.firstName}"/></td>
 	</tr>
@@ -35,7 +39,7 @@
 			<td><label>Phone : </label></td>
 			<td colspan="4"><input id="phone" name="phone" type="tel" value="${contact.phone}"/></td>
 		</tr>
-		<tr>
+			<tr>
 						<td ><input type="submit" value="Update"/></td>
 			#{/form}
 			<td colspan="3" />			
