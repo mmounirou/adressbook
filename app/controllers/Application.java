@@ -2,6 +2,9 @@ package controllers;
 
 import models.Contact;
 import models.User;
+
+import org.apache.commons.lang.StringUtils;
+
 import play.modules.paginate.ModelPaginator;
 import play.modules.paginate.locator.JPAIndexedRecordLocator;
 import play.mvc.Before;
@@ -14,7 +17,6 @@ public class Application extends Controller
 {
 
 	private static final int MAX_CONTACT_PER_PAGE = 5;
-	
 
 	@Before
 	static void setConnectedUser()
@@ -26,12 +28,24 @@ public class Application extends Controller
 		}
 	}
 
-	public static void index()
+	public static void index(String filter)
 	{
-		ModelPaginator paginator = new ModelPaginator(new JPAIndexedRecordLocator(Contact.class));
+		String strFilter = "";
+		JPAIndexedRecordLocator locator = new JPAIndexedRecordLocator(Contact.class);
+		if (!StringUtils.isEmpty(filter))
+		{
+			strFilter = "upper(name) like upper(?) or upper(firstName) like upper(?) or upper(mail) like upper(?) or upper(phone) like upper(?)";
+			String extFilter = "%" + filter + "%";
+			locator = new JPAIndexedRecordLocator(Contact.class, strFilter, extFilter, extFilter, extFilter, extFilter);
+		} else
+		{
+			filter = "";
+		}
+
+		ModelPaginator paginator = new ModelPaginator(locator);
 		paginator.setPageSize(MAX_CONTACT_PER_PAGE);
 		paginator.setPagesDisplayed(3);
-		render(paginator);
+		render(paginator, filter);
 	}
 
 	@Check("admin")
@@ -49,7 +63,7 @@ public class Application extends Controller
 		contact.mail = mail;
 		contact.phone = phone;
 		contact.save();
-		index();
+		index("");
 	}
 
 	public static void addContact(String name, String firstName, String mail, String phone)
@@ -58,7 +72,7 @@ public class Application extends Controller
 		contact.create();
 
 		// Refresh the interface
-		index();
+		index("");
 	}
 
 }

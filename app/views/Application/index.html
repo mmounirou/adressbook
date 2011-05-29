@@ -1,6 +1,9 @@
 #{extends 'connected-user.html' /} #{set title:'Home' /}
-
 <div class="contacts">
+#{form @Application.index()}
+	<input type="search" id="filter" name="filter" value="${filter}" />
+	<input type="submit" id="submit" value="Filter"/>
+#{/form}
 	<table>
 		<thead>
 			<tr>
