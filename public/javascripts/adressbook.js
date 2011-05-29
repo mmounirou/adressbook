@@ -24,3 +24,15 @@ $(document).ready(function()
 		}
 	});
 });
+
+$(document).ready(function()
+{
+	$('#list_contacts tr').click(function() {
+		
+		if($(this).find("a").size() != 0 )
+		{
+			
+	  		window.location.href = $(this).find("a").attr("href");
+		}
+	});
+});

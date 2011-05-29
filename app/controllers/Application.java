@@ -98,6 +98,7 @@ public class Application extends Controller
 		
 	}
 	
+	@Check("admin")
 	public static void settings()
 	{
 		render();
