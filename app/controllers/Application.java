@@ -8,7 +8,6 @@ import models.ContactGroup;
 import models.User;
 
 import org.apache.commons.lang.StringUtils;
-import org.omg.CORBA.REBIND;
 
 import play.modules.paginate.ModelPaginator;
 import play.modules.paginate.locator.JPAIndexedRecordLocator;
@@ -77,20 +76,22 @@ public class Application extends Controller
 		validation.email(mail);
 		validation.phone(phone);
 		
-		contact.name = name;
-		contact.firstName = firstName;
-		contact.mail = mail;
-		contact.phone = phone;
+		if(!StringUtils.isEmpty(name)) contact.name = name;
+		if(!StringUtils.isEmpty(firstName)) contact.firstName = firstName;
+		if(!StringUtils.isEmpty(mail)) contact.mail = mail;
+		if(!StringUtils.isEmpty(phone)) contact.phone = phone;
 		
 		if (validation.hasErrors())
 		{
-			contact.cgroup = new ContactGroup(cgroup);
+		
+			if(!StringUtils.isEmpty(cgroup)) contact.cgroup = new ContactGroup(cgroup);
 
 			params.flash(); // add http parameters to the flash scope
 			//validation.keep(); // keep the errors for the next request
 			render(contact);
 		} else
 		{
+			 contact.cgroup = ContactGroup.getOrCreate(cgroup);
 			contact.save();
 			index("");
 		}

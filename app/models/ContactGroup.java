@@ -21,13 +21,19 @@ public class ContactGroup extends Model
 
 	public static ContactGroup getOrCreate(String group)
 	{
-		ContactGroup contactGroup = find("byName", group).first();
+
+		ContactGroup contactGroup = findByName(group);
 		if (contactGroup == null)
 		{
 			contactGroup = new ContactGroup(group);
 			contactGroup.create();
 		}
 		return contactGroup;
+	}
+
+	public static ContactGroup findByName(String group)
+	{
+		return find("byName", group).first();
 	}
 
 }
