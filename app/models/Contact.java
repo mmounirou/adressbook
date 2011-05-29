@@ -1,22 +1,30 @@
 package models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.annotations.ManyToAny;
-
+import play.data.validation.Email;
+import play.data.validation.Phone;
 import play.db.jpa.Model;
 
 @Entity
 public class Contact extends Model
 {
+
 	public String name;
 	public String firstName;
+
+	@Email
 	public String mail;
+
+	@Phone
 	public String phone;
-	@ManyToOne
+
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	public ContactGroup cgroup;
+
 	@Lob
 	public String notes = "";
 
@@ -38,8 +46,8 @@ public class Contact extends Model
 
 	public static Contact byPhoneAndMail(String phone, String mail)
 	{
-		return Contact.find("byMailAndPhone", mail,phone).first();
-		
+		return Contact.find("byMailAndPhone", mail, phone).first();
+
 	}
 
 }

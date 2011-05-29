@@ -8,6 +8,7 @@ import models.ContactGroup;
 import models.User;
 
 import org.apache.commons.lang.StringUtils;
+import org.omg.CORBA.REBIND;
 
 import play.modules.paginate.ModelPaginator;
 import play.modules.paginate.locator.JPAIndexedRecordLocator;
@@ -39,7 +40,7 @@ public class Application extends Controller
 
 	public static void groups(String term)
 	{
-		List<ContactGroup> groups = ContactGroup.find("upper(name) like upper(?)","%"+ StringUtils.defaultIfEmpty(term, "")+"%").fetch();
+		List<ContactGroup> groups = ContactGroup.find("upper(name) like upper(?)", "%" + StringUtils.defaultIfEmpty(term, "") + "%").fetch();
 		renderJSON(groups);
 	}
 
@@ -52,6 +53,7 @@ public class Application extends Controller
 			strFilter = "upper(cgroup) like upper(?) or upper(name) like upper(?) or upper(firstName) like upper(?) or upper(mail) like upper(?) or upper(phone) like upper(?)";
 			String extFilter = "%" + filter + "%";
 			locator = new JPAIndexedRecordLocator(Contact.class, strFilter, strFilter, extFilter, extFilter, extFilter, extFilter);
+			locator.setOrderBy("firstName");
 		} else
 		{
 			filter = "";
@@ -64,33 +66,37 @@ public class Application extends Controller
 	}
 
 	@Check("admin")
-	public static void edit(long id)
+	public static void edit(long id, String cgroup, String name, String firstName, String mail, String phone)
 	{
 		Contact contact = Contact.findById(id);
-		render(contact);
-	}
-
-	public static void updateContact(long id, String cgroup, String name, String firstName, String mail, String phone)
-	{
-		Contact contact = Contact.findById(id);
+		if(contact ==null)
+			contact = new Contact();
+		validation.required(cgroup);
+		validation.required(name);
+		validation.required(firstName);
+		validation.email(mail);
+		validation.phone(phone);
+		
 		contact.name = name;
 		contact.firstName = firstName;
 		contact.mail = mail;
 		contact.phone = phone;
-		contact.cgroup = ContactGroup.getOrCreate(cgroup);
-		contact.save();
-		index("");
+		
+		if (validation.hasErrors())
+		{
+			contact.cgroup = new ContactGroup(cgroup);
+
+			params.flash(); // add http parameters to the flash scope
+			//validation.keep(); // keep the errors for the next request
+			render(contact);
+		} else
+		{
+			contact.save();
+			index("");
+		}
+		
 	}
-
-	public static void addContact(String cgroup, String name, String firstName, String mail, String phone)
-	{
-		Contact contact = new Contact(name, firstName, cgroup, mail, phone);
-		contact.create();
-
-		// Refresh the interface
-		index("");
-	}
-
+	
 	public static void settings()
 	{
 		render();

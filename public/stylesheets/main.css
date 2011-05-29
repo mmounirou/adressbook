@@ -64,6 +64,11 @@ a:link,a:visited {
 	padding: 0px;
 }
 
+.error {
+    color: red;
+    font-style: italic;
+}
+
 td input {
 	width: 95%;
 }
