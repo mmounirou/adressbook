@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import models.Contact;
+import models.ContactGroup;
 import models.User;
 
 import org.apache.commons.lang.StringUtils;
@@ -36,6 +37,12 @@ public class Application extends Controller
 		}
 	}
 
+	public static void groups(String term)
+	{
+		List<ContactGroup> groups = ContactGroup.find("upper(name) like upper(?)","%"+ StringUtils.defaultIfEmpty(term, "")+"%").fetch();
+		renderJSON(groups);
+	}
+
 	public static void index(String filter)
 	{
 		String strFilter = "";
@@ -44,7 +51,7 @@ public class Application extends Controller
 		{
 			strFilter = "upper(cgroup) like upper(?) or upper(name) like upper(?) or upper(firstName) like upper(?) or upper(mail) like upper(?) or upper(phone) like upper(?)";
 			String extFilter = "%" + filter + "%";
-			locator = new JPAIndexedRecordLocator(Contact.class, strFilter,strFilter, extFilter, extFilter, extFilter, extFilter);
+			locator = new JPAIndexedRecordLocator(Contact.class, strFilter, strFilter, extFilter, extFilter, extFilter, extFilter);
 		} else
 		{
 			filter = "";
@@ -70,7 +77,7 @@ public class Application extends Controller
 		contact.firstName = firstName;
 		contact.mail = mail;
 		contact.phone = phone;
-		contact.cgroup = cgroup;
+		contact.cgroup = ContactGroup.getOrCreate(cgroup);
 		contact.save();
 		index("");
 	}
@@ -118,9 +125,9 @@ public class Application extends Controller
 						contact.firstName = person.getFirstName();
 						modified = true;
 					}
-					if (!StringUtils.isEmpty(person.getCompagny()) && StringUtils.equalsIgnoreCase(contact.cgroup, person.getCompagny()))
+					if (!StringUtils.isEmpty(person.getCompagny()) && StringUtils.equalsIgnoreCase(contact.cgroup.name, person.getCompagny()))
 					{
-						contact.name = person.getCompagny();
+						contact.cgroup = ContactGroup.getOrCreate(person.getCompagny());
 						modified = true;
 					}
 					if (!StringUtils.isEmpty(person.getEmail()) && StringUtils.equalsIgnoreCase(contact.mail, person.getEmail()))

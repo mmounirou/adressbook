@@ -24,7 +24,7 @@
 		</tfoot>
 		#{paginate.list items:paginator , as:'contact'}
 		<tr>
-			<td>${contact.cgroup}</td>
+			<td>${contact.cgroup?.name}</td>
 			<td>${contact.firstName}</td>
 			<td>${contact.name}</td>
 			<td>${contact.mail}</td>

@@ -2,6 +2,9 @@ package models;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.ManyToAny;
 
 import play.db.jpa.Model;
 
@@ -12,7 +15,8 @@ public class Contact extends Model
 	public String firstName;
 	public String mail;
 	public String phone;
-	public String cgroup;
+	@ManyToOne
+	public ContactGroup cgroup;
 	@Lob
 	public String notes = "";
 
@@ -28,7 +32,7 @@ public class Contact extends Model
 		this.firstName = firstName;
 		this.mail = mail;
 		this.phone = phone;
-		this.cgroup = group;
+		this.cgroup = ContactGroup.getOrCreate(group);
 
 	}
 

@@ -11,11 +11,16 @@ User(admin):
     password: admin
     isAdmin: true
 
+ContactGroup(Family):
+    name: Family
+
+
 Contact(marzouk):
     name : MOUNIROU
     firstName : Mohamed
     mail : mmounirou@mmounirou.com
     phone : 002299292929
+    cgroup: Family
 
 Contact(idriss):
     name : MOUNIROU

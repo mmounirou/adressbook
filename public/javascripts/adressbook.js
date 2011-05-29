@@ -1,13 +1,26 @@
-/*$(document).ready
-(
-	function()
+$(document).ready(function()
+{
+	$("#cgroup").autocomplete(
 	{
-		$('form :input').keyup
-		(
-			function(){
-				$(this).parents().filter("form").submit();
-			}
-		);
-	}
-)
-*/
+		source:function(request,response)
+		{
+			$.ajax(
+				{
+					url:"groups",
+					dataType: "json",
+					data:
+					{
+						term: request.term
+					},
+					success: function(data)
+					{
+						response($.map(data,function(item)
+							{
+								return {label: item.name , value: item.name}
+							}
+						));
+					}
+				});
+		}
+	});
+});
